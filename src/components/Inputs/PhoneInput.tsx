@@ -20,23 +20,22 @@ const PhoneInput: React.FC<PhoneInputProps> = (props) => {
 
   return (
     <div className="flex flex-col gap-1 mb-4 ">
-      <label
-        htmlFor={props.name}
-        className="text-md text-stone-800 font-bold text-left"
-      >
+      <label htmlFor={props.name} className="text-md text-stone-800 font-bold">
         {toTitleCase(props.label) + (props.required ? "*" : "")}
       </label>
 
-      <ReactPhoneNumberInput
-        className="w-full border border-gray-500 rounded-xl shadow px-2 py-2 bg-gray-100 focus:outline-orange-500 flex flex-row gap-3"
-        onChange={(value: Value) =>
-          props.formik.setFieldValue(props.name, value)
-        }
-        onBlur={() => props.formik.setFieldTouched(props.name, true)}
-        placeholder={props.placeholder}
-        value={props.formik.values[props.name] as string}
-        defaultCountry="SA"
-      ></ReactPhoneNumberInput>
+      <div className="">
+        <ReactPhoneNumberInput
+          className="w-full border border-gray-500 rounded-xl shadow px-2 py-2 bg-gray-100 focus:outline-orange-500 flex flex-row gap-3 "
+          onChange={(value: Value) =>
+            props.formik.setFieldValue(props.name, value)
+          }
+          onBlur={() => props.formik.setFieldTouched(props.name, true)}
+          placeholder={props.placeholder}
+          value={props.formik.values[props.name] as string}
+          defaultCountry="SA"
+        ></ReactPhoneNumberInput>
+      </div>
 
       {touched && error && isStringError && (
         <span className="text-red-500 text-sm">{error}</span>

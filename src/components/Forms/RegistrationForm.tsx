@@ -9,6 +9,7 @@ import type {
 } from "../../utils/formikUtils";
 import type { FormikProps } from "formik";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import HoursModal from "../Modals/HoursModal";
 import WorkHourCards from "../WorkHourCards";
 import { dayToNumber } from "../../utils/dayToNumber";
@@ -19,6 +20,7 @@ type RegistrationFormProps = {
 };
 
 const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
+  const { t } = useTranslation();
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [workDetailIndex, setWorkDetailIndex] = useState<number | null>(null);
 
@@ -65,48 +67,48 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
   return (
     <div>
       <SectionHeader
-        title="Fill Out Restaurant Registration Form"
-        subtitle="Fill out your personal information to create an account tied to a Restaurant and Continue"
+        title={t("form.registration.title")}
+        subtitle={t("form.registration.subtitle")}
         number={1}
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 md:gap-x-10 lg:gap-x-15">
         <TextInput
           name="nameEn"
-          label="Restaurant Name (English)"
-          placeholder="Enter your restaurant name in English"
+          label={t("form.registration.restaurant_name_en")}
+          placeholder={t("form.placeholders.restaurant_name_en")}
           required
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="nameAr"
-          label="Restaurant Name (Arabic)"
-          placeholder="Enter your restaurant name in Arabic"
+          label={t("form.registration.restaurant_name_ar")}
+          placeholder={t("form.placeholders.restaurant_name_ar")}
           required
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="email"
-          label="Email"
-          placeholder="Enter your email"
+          label={t("form.registration.email")}
+          placeholder={t("form.placeholders.email")}
           required
           type="email"
           formik={props.formik}
         />
         <TextInput
           name="bankAccountIban"
-          label="Bank Account IBAN"
-          placeholder="Enter your bank account IBAN"
+          label={t("form.registration.bank_iban")}
+          placeholder={t("form.placeholders.bank_iban")}
           required
           type="text"
           formik={props.formik}
         />
         <PasswordInput
           name="password"
-          label="Password"
+          label={t("form.registration.password")}
           required
-          placeholder="Enter your password"
+          placeholder={t("form.placeholders.password")}
           formik={props.formik}
         />
         {/* 
@@ -120,133 +122,133 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
         {/* You can add confirm password to state for UX but it doesn't exist in FormikFormValues */}
         <SelectInput
           formik={props.formik}
-          label="Restaurant Type"
+          label={t("form.registration.restaurant_type")}
           name="foodCategories"
           options={["Healthy food", "Fast Food"]}
-          placeholder="Select Type"
+          placeholder={t("form.placeholders.select_type")}
           required
         ></SelectInput>
         <TextInput
           name="registrationNumber"
-          label="Commercial Registration Number"
-          placeholder="Enter registration number consisting of 10 digits"
+          label={t("form.registration.registration_number")}
+          placeholder={t("form.placeholders.registration_number")}
           required
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="operationRepresentativeEmailAddress"
-          label="Operation Representative Email"
-          placeholder="Enter the restaurant representative's email"
+          label={t("form.registration.rep_email")}
+          placeholder={t("form.placeholders.rep_email")}
           required
           type="email"
           formik={props.formik}
         />
         <PhoneInput
           name="operationRepresentativePhoneNumber"
-          label="Operation Representative Phone"
-          placeholder="Enter the restaurant representative's phone"
+          label={t("form.registration.rep_phone")}
+          placeholder={t("form.placeholders.rep_phone")}
           required
           formik={props.formik}
         />
         <TextInput
           name="operationRepresentativeFullNameEn"
-          label="Operation Representative Full Name (English)"
-          placeholder="Enter the representative's full name in English"
+          label={t("form.registration.rep_name_en")}
+          placeholder={t("form.placeholders.rep_name_en")}
           required
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="operationRepresentativeFullNameAr"
-          label="Operation Representative Full Name (Arabic)"
-          placeholder="Enter the representative's full name in Arabic"
+          label={t("form.registration.rep_name_ar")}
+          placeholder={t("form.placeholders.rep_name_ar")}
           required
           type="text"
           formik={props.formik}
         />
         <PhoneInput
           name="managementPhoneNumber"
-          label="Management Phone Number"
-          placeholder="Enter management phone number"
+          label={t("form.registration.management_phone")}
+          placeholder={t("form.placeholders.management_phone")}
           required
           formik={props.formik}
         />
         <TextInput
           name="mainBranchNameAr"
-          label="Main Branch Name (Arabic)"
-          placeholder="Enter main branch name in Arabic"
+          label={t("form.registration.branch_name_ar")}
+          placeholder={t("form.placeholders.branch_name_ar")}
           required
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="mainBranchNameEn"
-          label="Main Branch Name (English)"
-          placeholder="Enter main branch name in English"
+          label={t("form.registration.branch_name_en")}
+          placeholder={t("form.placeholders.branch_name_en")}
           required
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="branchDistrict"
-          label="Branch District"
-          placeholder="Enter branch district"
+          label={t("form.registration.branch_district")}
+          placeholder={t("form.placeholders.branch_district")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="branchAddressName"
-          label="Branch Address Name"
-          placeholder="Enter branch address name"
+          label={t("form.registration.branch_address")}
+          placeholder={t("form.placeholders.branch_address")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="branchStreet"
-          label="Branch Street"
-          placeholder="Enter branch street"
+          label={t("form.registration.branch_street")}
+          placeholder={t("form.placeholders.branch_street")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="branchBuildingNumber"
-          label="Branch Building Number"
-          placeholder="Enter branch building number"
+          label={t("form.registration.branch_building")}
+          placeholder={t("form.placeholders.branch_building")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="branchAddressDescription"
-          label="Branch Address Description"
-          placeholder="Enter branch address description"
+          label={t("form.registration.branch_description")}
+          placeholder={t("form.placeholders.branch_description")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="twitterSocialMediaLink"
-          label="Twitter Account"
-          placeholder="Enter your restaurant Twitter page"
+          label={t("form.registration.twitter")}
+          placeholder={t("form.placeholders.twitter")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <TextInput
           name="instagramSocialMediaLink"
-          label="Instagram Account"
-          placeholder="Enter your restaurant Instagram page"
+          label={t("form.registration.instagram")}
+          placeholder={t("form.placeholders.instagram")}
           required={false}
           type="text"
           formik={props.formik}
         />
         <ExternalLinkInput
           name="mainRestaurantBranchMapsLink"
-          label="Google Maps Location"
+          label={t("form.registration.maps_location")}
           required={false}
           link="..."
           onClick={() => {}}
@@ -255,7 +257,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
         <div>
           <ExternalLinkInput
             name="workingDetails"
-            label="Working hours"
+            label={t("form.registration.working_hours")}
             required={false}
             link="..."
             onClick={() => {

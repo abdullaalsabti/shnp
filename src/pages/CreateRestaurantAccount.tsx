@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import RegistrationForm from "../components/Forms/RegistrationForm";
 import RequiredDocumentForm from "../components/Forms/RequiredDocumentForm";
 import { useFormik } from "formik";

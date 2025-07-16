@@ -3,7 +3,7 @@ import "./App.css";
 import RootLayout from "./pages/RootLayout";
 import CreateRestaurantAccountPage from "./pages/CreateRestaurantAccount";
 import { Toaster } from "../node_modules/react-hot-toast/src/components/toaster";
-
+import useDirection from "./hooks/useDirection";
 
 const router = createBrowserRouter([
   {
@@ -17,8 +17,10 @@ const router = createBrowserRouter([
     ],
   },
 ]);
- 
+
 function App() {
+  useDirection();
+
   return (
     <>
       <RouterProvider router={router}></RouterProvider>;<Toaster></Toaster>
