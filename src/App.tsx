@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import RootLayout from "./pages/RootLayout";
 import CreateRestaurantAccountPage from "./pages/CreateRestaurantAccount";
-
 import { Toaster } from "../node_modules/react-hot-toast/src/components/toaster";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,12 +17,11 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
+ 
 function App() {
   return (
     <>
-      <RouterProvider router={router}></RouterProvider>;
-      <Toaster ></Toaster>
+      <RouterProvider router={router}></RouterProvider>;<Toaster></Toaster>
     </>
   );
 }

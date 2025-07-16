@@ -32,7 +32,7 @@ const CreateRestaurantAccountPage: React.FC = () => {
               border: "1px solid black",
               padding: "1rem",
               fontFamily: "Urbanist",
-              fontWeight: "bold"
+              fontWeight: "bold",
             },
           });
         });
@@ -58,7 +58,9 @@ const CreateRestaurantAccountPage: React.FC = () => {
       <h1 className="text-3xl font-medium text-left">
         Create A Restaurant Account
       </h1>
-      {isSubmitting && <LoadingIndicator></LoadingIndicator>}
+      {isSubmitting && (
+        <LoadingIndicator text="Submitting..."></LoadingIndicator>
+      )}
       <div className={`${isSubmitting ? "blur-sm pointer-events-none" : ""}`}>
         <form onSubmit={formik.handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 divide-x divide-gray-400/40 border border-gray-400/40">
