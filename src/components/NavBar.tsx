@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 const NavBar: React.FC = () => {
   const listItemClassName = "hover:text-orange-900 cursor-pointer";
+
+  const { t } = useTranslation();
 
   return (
     <nav className="bg-white  w-full">
@@ -19,20 +22,26 @@ const NavBar: React.FC = () => {
             to={"/"}
             className={(isActive) => (isActive ? listItemClassName : "")}
           >
-            Home
+            {t("home")}
           </NavLink>
           <NavLink
             to={"/createRestaurantAccount"}
             className={(isActive) => (isActive ? listItemClassName : "")}
           >
-            Create Account
+            {t("create-account")}
           </NavLink>
-          <NavLink
-            to={"/order"}
-            className={(isActive) => (isActive ? listItemClassName : "")}
+
+          <button
+            onClick={() => {
+              if (i18next.language === "en") {
+                i18next.changeLanguage("ar");
+              } else {
+                i18next.changeLanguage("en");
+              }
+            }}
           >
-            Order
-          </NavLink>
+            {i18next.language === "en" ? "العربية" : "English"}
+          </button>
         </ul>
       </div>
     </nav>

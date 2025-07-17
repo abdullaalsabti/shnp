@@ -1,0 +1,78 @@
+{
+  "welcome": "مرحبا",
+  "logout": "تسجيل خروج",
+  "home": "الصفحة الرئيسية",
+  "create-account": "إنشاء حساب",
+  "form": {
+    "registration": {
+      "title": "املأ نموذج تسجيل المطعم",
+      "subtitle": "املأ معلوماتك الشخصية لإنشاء حساب مرتبط بمطعم والمتابعة",
+      "restaurant_name_en": "اسم المطعم (بالإنجليزية)",
+      "restaurant_name_ar": "اسم المطعم (بالعربية)",
+      "email": "البريد الإلكتروني",
+      "bank_iban": "رقم الآيبان للحساب البنكي",
+      "password": "كلمة المرور",
+      "restaurant_type": "نوع المطعم",
+      "registration_number": "رقم السجل التجاري",
+      "rep_email": "بريد ممثل العمليات الإلكتروني",
+      "rep_phone": "هاتف ممثل العمليات",
+      "rep_name_en": "الاسم الكامل لممثل العمليات (بالإنجليزية)",
+      "rep_name_ar": "الاسم الكامل لممثل العمليات (بالعربية)",
+      "management_phone": "رقم هاتف الإدارة",
+      "branch_name_ar": "اسم الفرع الرئيسي (بالعربية)",
+      "branch_name_en": "اسم الفرع الرئيسي (بالإنجليزية)",
+      "branch_district": "حي الفرع",
+      "branch_address": "اسم عنوان الفرع",
+      "branch_street": "شارع الفرع",
+      "branch_building": "رقم مبنى الفرع",
+      "branch_description": "وصف عنوان الفرع",
+      "twitter": "حساب تويتر",
+      "instagram": "حساب إنستغرام",
+      "maps_location": "موقع خرائط جوجل",
+      "working_hours": "ساعات العمل"
+    },
+    "documents": {
+      "title": "إرفاق المستندات المطلوبة",
+      "subtitle": "املأ معلوماتك الشخصية لإنشاء حساب مرتبط بمطعم والمتابعة",
+      "contract": "يرجى تحميل العقد وقراءته جيداً، ثم التوقيع عليه ورفع العقد هنا",
+      "restaurant_image": "صورة المطعم",
+      "commercial_license": "الرخصة التجارية",
+      "tax_certificate": "رقم شهادة الضريبة",
+      "create_account": "إنشاء حساب"
+    },
+    "placeholders": {
+      "restaurant_name_en": "أدخل اسم مطعمك بالإنجليزية",
+      "restaurant_name_ar": "أدخل اسم مطعمك بالعربية",
+      "email": "أدخل بريدك الإلكتروني",
+      "bank_iban": "أدخل رقم الآيبان للحساب البنكي",
+      "password": "أدخل كلمة المرور",
+      "select_type": "اختر النوع",
+      "registration_number": "أدخل رقم التسجيل المكون من 10 أرقام",
+      "rep_email": "أدخل البريد الإلكتروني لممثل المطعم",
+      "rep_phone": "أدخل هاتف ممثل المطعم",
+      "rep_name_en": "أدخل الاسم الكامل للممثل بالإنجليزية",
+      "rep_name_ar": "أدخل الاسم الكامل للممثل بالعربية",
+      "management_phone": "أدخل رقم هاتف الإدارة",
+      "branch_name_ar": "أدخل اسم الفرع الرئيسي بالعربية",
+      "branch_name_en": "أدخل اسم الفرع الرئيسي بالإنجليزية",
+      "branch_district": "أدخل حي الفرع",
+      "branch_address": "أدخل اسم عنوان الفرع",
+      "branch_street": "أدخل شارع الفرع",
+      "branch_building": "أدخل رقم مبنى الفرع",
+      "branch_description": "أدخل وصف عنوان الفرع",
+      "twitter": "أدخل صفحة مطعمك على تويتر",
+      "instagram": "أدخل صفحة مطعمك على إنستغرام"
+    }
+  },
+  "inputs": {
+    "document": {
+      "preview_alt": "معاينة الوثيقة المرفوعة",
+      "view_pdf": "عرض ملف PDF",
+      "download_file": "تحميل الملف"
+    },
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "invalid_format": "تنسيق غير صحيح"
+    }
+  }
+}

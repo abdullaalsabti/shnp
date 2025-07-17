@@ -1,0 +1,78 @@
+{
+  "welcome": "Welcome",
+  "logout": "Logout",
+  "home": "Home",
+  "create-account": "Create Account",
+  "form": {
+    "registration": {
+      "title": "Fill Out Restaurant Registration Form",
+      "subtitle": "Fill out your personal information to create an account tied to a Restaurant and Continue",
+      "restaurant_name_en": "Restaurant Name (English)",
+      "restaurant_name_ar": "Restaurant Name (Arabic)",
+      "email": "Email",
+      "bank_iban": "Bank Account IBAN",
+      "password": "Password",
+      "restaurant_type": "Restaurant Type",
+      "registration_number": "Commercial Registration Number",
+      "rep_email": "Operation Representative Email",
+      "rep_phone": "Operation Representative Phone",
+      "rep_name_en": "Operation Representative Full Name (English)",
+      "rep_name_ar": "Operation Representative Full Name (Arabic)",
+      "management_phone": "Management Phone Number",
+      "branch_name_ar": "Main Branch Name (Arabic)",
+      "branch_name_en": "Main Branch Name (English)",
+      "branch_district": "Branch District",
+      "branch_address": "Branch Address Name",
+      "branch_street": "Branch Street",
+      "branch_building": "Branch Building Number",
+      "branch_description": "Branch Address Description",
+      "twitter": "Twitter Account",
+      "instagram": "Instagram Account",
+      "maps_location": "Google Maps Location",
+      "working_hours": "Working hours"
+    },
+    "documents": {
+      "title": "Attach Required Documents",
+      "subtitle": "Fill out your personal information to create an account tied to a Restaurant and Continue",
+      "contract": "Please download the contract and read it well, Then sign on it and upload the contract here",
+      "restaurant_image": "Restaurant Image",
+      "commercial_license": "Commercial License",
+      "tax_certificate": "Tax Certificate Number",
+      "create_account": "Create Account"
+    },
+    "placeholders": {
+      "restaurant_name_en": "Enter your restaurant name in English",
+      "restaurant_name_ar": "Enter your restaurant name in Arabic",
+      "email": "Enter your email",
+      "bank_iban": "Enter your bank account IBAN",
+      "password": "Enter your password",
+      "select_type": "Select Type",
+      "registration_number": "Enter registration number consisting of 10 digits",
+      "rep_email": "Enter the restaurant representative's email",
+      "rep_phone": "Enter the restaurant representative's phone",
+      "rep_name_en": "Enter the representative's full name in English",
+      "rep_name_ar": "Enter the representative's full name in Arabic",
+      "management_phone": "Enter management phone number",
+      "branch_name_ar": "Enter main branch name in Arabic",
+      "branch_name_en": "Enter main branch name in English",
+      "branch_district": "Enter branch district",
+      "branch_address": "Enter branch address name",
+      "branch_street": "Enter branch street",
+      "branch_building": "Enter branch building number",
+      "branch_description": "Enter branch address description",
+      "twitter": "Enter your restaurant Twitter page",
+      "instagram": "Enter your restaurant Instagram page"
+    }
+  },
+  "inputs": {
+    "document": {
+      "preview_alt": "Uploaded document preview",
+      "view_pdf": "View PDF",
+      "download_file": "Download File"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalid_format": "Invalid format"
+    }
+  }
+}

@@ -26,10 +26,7 @@ const PasswordInput: React.FC<PasswordInputProps> = (props) => {
 
   return (
     <div className="flex flex-col gap-1 mb-4 ">
-      <label
-        htmlFor={props.name}
-        className="text-md text-stone-800 font-bold text-left"
-      >
+      <label htmlFor={props.name} className="text-md text-stone-800 font-bold">
         {toTitleCase(props.label) + (props.required ? "*" : "")}
       </label>
       <div className="border border-gray-500 rounded-xl shadow px-2 py-2 bg-gray-100 flex flex-row justify-between items-center focus-within:border-orange-500 focus-within:border-2 ">

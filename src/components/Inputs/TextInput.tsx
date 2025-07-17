@@ -19,10 +19,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 
   return (
     <div className="flex flex-col gap-1 mb-4 ">
-      <label
-        htmlFor={props.name}
-        className="text-md text-stone-800 font-bold text-left"
-      >
+      <label htmlFor={props.name} className="text-md text-stone-800 font-bold">
         {toTitleCase(props.label) + (props.required ? "*" : "")}
       </label>
 

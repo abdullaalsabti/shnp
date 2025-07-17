@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import DocumentInput from "../Inputs/DocumentInput";
 import SectionHeader from "../SectionHeader";
 import type { FormikProps } from "formik";
@@ -10,30 +11,6 @@ import {
   FileInputCodes,
 } from "../../utils/formikUtils";
 
-const fileInputConfigs = [
-  {
-    label:
-      "Please download the contract and read it well, Then sign on it and upload the contract here",
-    index: 0,
-    optionalIcon: true,
-  },
-  {
-    label: "Restaurant Image",
-    index: 1,
-    optionalIcon: false,
-  },
-  {
-    label: "Commercial License",
-    index: 2,
-    optionalIcon: false,
-  },
-  {
-    label: "Tax Certificate Number",
-    index: 3,
-    optionalIcon: false,
-  },
-];
-
 type RequiredDocumentFormProps = {
   formik: FormikProps<FormikFormValues>;
 };
@@ -41,6 +18,30 @@ type RequiredDocumentFormProps = {
 const RequiredDocumentForm: React.FC<RequiredDocumentFormProps> = ({
   formik,
 }) => {
+  const { t } = useTranslation();
+
+  const fileInputConfigs = [
+    {
+      label: t("form.documents.contract"),
+      index: 0,
+      optionalIcon: true,
+    },
+    {
+      label: t("form.documents.restaurant_image"),
+      index: 1,
+      optionalIcon: false,
+    },
+    {
+      label: t("form.documents.commercial_license"),
+      index: 2,
+      optionalIcon: false,
+    },
+    {
+      label: t("form.documents.tax_certificate"),
+      index: 3,
+      optionalIcon: false,
+    },
+  ];
   function toBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -103,8 +104,8 @@ const RequiredDocumentForm: React.FC<RequiredDocumentFormProps> = ({
     <div className="h-full flex flex-col justify-between">
       <div className="grid grid-cols-1">
         <SectionHeader
-          title="Attach Required Documents"
-          subtitle="Fill out your personal information to create an account tied to a Restaurant and Continue"
+          title={t("form.documents.title")}
+          subtitle={t("form.documents.subtitle")}
           number={2}
         />
 
@@ -126,7 +127,7 @@ const RequiredDocumentForm: React.FC<RequiredDocumentFormProps> = ({
 
       <div className="flex justify-end items-center">
         <Button type="submit" inverted={false}>
-          Create Account
+          {t("form.documents.create_account")}
         </Button>
       </div>
     </div>

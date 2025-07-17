@@ -2,6 +2,7 @@ import React from "react";
 import toTitleCase from "../../utils/toTitleCase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 import Button from "../Buttons/Button";
 
 interface ExternalLinkInputProps {
@@ -14,6 +15,7 @@ interface ExternalLinkInputProps {
 }
 
 const ExternalLinkInput: React.FC<ExternalLinkInputProps> = (props) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-row justify-between items-center w-full">
       <label htmlFor={props.name}>

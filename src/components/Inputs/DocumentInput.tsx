@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faDownload } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import type { FormikFormValues } from "../../utils/formikUtils";
 import { getIn, type FormikProps } from "formik";
 
@@ -15,6 +16,7 @@ interface DocumentInputProps {
 }
 
 const DocumentInput: React.FC<DocumentInputProps> = (props) => {
+  const { t } = useTranslation();
   const touched = getIn(props.formik.touched, props.name);
   const error = getIn(props.formik.errors, props.name);
   const isStringError = typeof error === "string";
@@ -28,14 +30,14 @@ const DocumentInput: React.FC<DocumentInputProps> = (props) => {
         preview = (
           <img
             src={url}
-            alt="Uploaded document preview"
+            alt={t("inputs.document.preview_alt")}
             className="w-25 h-25 object-cover rounded-md"
           />
         );
       } else if (isPDF) {
-        preview = <a href={url}>View PDF</a>;
+        preview = <a href={url}>{t("inputs.document.view_pdf")}</a>;
       } else {
-        preview = <a href={url}>Download File</a>;
+        preview = <a href={url}>{t("inputs.document.download_file")}</a>;
       }
     }
 
