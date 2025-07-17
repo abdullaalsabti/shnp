@@ -12,6 +12,7 @@ import { numberToDay } from "../../utils/numberToDay";
 import type { FormikProps } from "formik";
 import validateWorkingDetail from "../../utils/validateWorkingDetails";
 import { dayToNumber } from "../../utils/dayToNumber";
+import getRandomId from "../../utils/getRandomId";
 
 type HoursModalProps = {
   onClose: () => void;
@@ -26,11 +27,13 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
     day: string;
     fromHour: string;
     toHour: string;
+    id: number;
     errors: string[];
   }>({
     day: numberToDay(props.workingHoursInstance?.day ?? 0),
     fromHour: props.workingHoursInstance?.from ?? "09:00",
     toHour: props.workingHoursInstance?.to ?? "17:00",
+    id: props.workingHoursInstance?.id ?? getRandomId(),
     errors: [],
   });
 
@@ -38,6 +41,8 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
 
   const hourInputCss = "px-2 py-1 font-medium border-b-1 border-b-gray-500";
   const labelCss = "text-stone-800 font-bold italic mr-1";
+
+  console.log("received working detail: ", props.workingHoursInstance);
 
   function handleSaveInputs() {
     props.formik.setFieldValue("longitude", 31.9522);
@@ -48,7 +53,7 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
       to: date.toHour,
       fromHour: parseInt(date.fromHour),
       toHour: parseInt(date.toHour),
-      id: 0,
+      id: date.id,
       restaurantId: 0,
     };
     const existingWorkDetails = [
@@ -76,7 +81,9 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
     <ReusableModal onClose={onClose} modalIsOpen={modalIsOpen}>
       <div className="flex flex-row justify-between items-center mb-4">
         <h2 className="text-orange-400 text-2xl font-bold ">
-          Edit Working Details
+          {props.workingHoursInstance === null
+            ? "Add New Working Details"
+            : "Edit Working Details"}
         </h2>
         <button
           type="button"

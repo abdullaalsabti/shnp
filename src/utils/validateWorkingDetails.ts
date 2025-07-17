@@ -32,7 +32,7 @@ export default function validateWorkingDetail(
       for (let i = 1; i < intervals.length; i++) {
         const prev = intervals[i - 1];
         const current = intervals[i];
-        if (current.fromHour < prev.toHour) {
+        if (prev.id != current.id && current.fromHour < prev.toHour) {
           errors.push(
             `Overlapping intervals on ${numberToDay(parseInt(day))}: ${
               prev.from

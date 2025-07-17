@@ -44,7 +44,7 @@ const DocumentInput: React.FC<DocumentInputProps> = (props) => {
     return preview;
   });
 
-  console.log(previewContent);
+  // console.log(previewContent);
 
   return (
     <>

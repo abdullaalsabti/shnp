@@ -14,6 +14,7 @@ import HoursModal from "../Modals/HoursModal";
 import WorkHourCards from "../WorkHourCards";
 import { dayToNumber } from "../../utils/dayToNumber";
 import SelectInput from "../Inputs/SelectInput";
+import getRandomId from "../../utils/getRandomId";
 
 type RegistrationFormProps = {
   formik: FormikProps<FormikFormValues>;
@@ -35,8 +36,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       toHour: parseInt(toHour),
       from: fromHour,
       to: toHour,
-      id: 0, //FIXME: replace id with actual id
-      restaurantId: 0, //FIXME: replace id with actual id
+      id: getRandomId(), //FIXME: replace id with actual id
+      restaurantId: 0,
     };
 
     const existingWorkingDetails = [...props.formik.values.workingDetails]; //copy
@@ -52,7 +53,13 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
     setWorkDetailIndex(null);
   }
 
+  console.log(
+    workDetailIndex,
+    props.formik.values.workingDetails[workDetailIndex ?? 0]
+  );
+
   function handleEditHours(index: number) {
+    console.log("editing work detail at index: ", index);
     setWorkDetailIndex(index);
     setModalIsOpen(true);
   }
@@ -111,15 +118,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
           placeholder={t("form.placeholders.password")}
           formik={props.formik}
         />
-        {/* 
-        <PasswordInput
-          name="confirmPassword"
-          label="confirmPassword"
-          required
-          placeholder="Enter your password"
-          formik={props.formik}
-        /> */}
-        {/* You can add confirm password to state for UX but it doesn't exist in FormikFormValues */}
         <SelectInput
           formik={props.formik}
           label={t("form.registration.restaurant_type")}
@@ -261,6 +259,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
             required={false}
             link="..."
             onClick={() => {
+              console.log("adding new detail...");
               setModalIsOpen(true);
             }}
             overlay="hours"
