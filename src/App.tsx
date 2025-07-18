@@ -4,10 +4,12 @@ import RootLayout from "./pages/RootLayout";
 import CreateRestaurantAccountPage from "./pages/CreateRestaurantAccount";
 import { Toaster } from "../node_modules/react-hot-toast/src/components/toaster";
 import useDirection from "./hooks/useDirection";
-import LoginSignupPage from "./pages/LoginSignupPage";
+import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import LoadingIndicator from "./components/LoadingIndicator";
 import { useApplicationSelector } from "./store/storeHooks";
+import { logoutAction } from "./pages/Logout";
+import checkIsAuthLoader, { checkIsNotAuthLoader } from "./utils/auth";
 
 const router = createBrowserRouter([
   {
@@ -20,11 +22,18 @@ const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <LoginSignupPage></LoginSignupPage>,
+        element: <LoginPage></LoginPage>,
+        loader: checkIsNotAuthLoader,
       },
       {
         path: "home",
         element: <HomePage></HomePage>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "logout",
+        action: logoutAction,
+        loader: logoutAction,
       },
     ],
   },
@@ -41,11 +50,7 @@ function App() {
       <div className={isLoading ? "pointer-events-none" : ""}>
         <RouterProvider router={router}></RouterProvider>
       </div>
-      {isLoading && (
-       
-          <LoadingIndicator />
-
-      )}
+      {isLoading && <LoadingIndicator />}
       <Toaster
         toastOptions={{
           style: {

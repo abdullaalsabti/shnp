@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import LoadingSlice from "./loadingSlice";
+import authSlice from "./authSlice";
 
 const store = configureStore({
   reducer: {
     loadingState: LoadingSlice.reducer,
+    authState: authSlice.reducer,
   },
 });
 

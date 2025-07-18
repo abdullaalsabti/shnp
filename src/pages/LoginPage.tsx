@@ -8,8 +8,9 @@ import toast from "../../node_modules/react-hot-toast/src/index";
 import { useNavigate } from "react-router-dom";
 import { loadingActions } from "../store/loadingSlice";
 import { useApplicationDispatch } from "../store/storeHooks";
+import { authSliceActions } from "../store/authSlice";
 
-const LoginSignupPage = () => {
+const LoginPage = () => {
   const { t } = useTranslation();
   const navigator = useNavigate();
   const dispatch = useApplicationDispatch();
@@ -82,8 +83,12 @@ const LoginSignupPage = () => {
         const jwt: string = data["jwt"];
         const refreshToken: string = data["refreshToken"];
 
-        localStorage.setItem("jwt", jwt);
-        localStorage.setItem("refreshToken", refreshToken);
+        dispatch(
+          authSliceActions.login({ token: jwt, refreshToken: refreshToken })
+        );
+
+        // localStorage.setItem("jwt", jwt);
+        // localStorage.setItem("refreshToken", refreshToken);
 
         navigator("/Home");
       } catch (err) {
@@ -104,74 +109,81 @@ const LoginSignupPage = () => {
         {t("login.title")}
       </h2>
       <p className="text-center mt-1 mb-2 font-medium">{t("login.subtitle")}</p>
-      <TextInput
-        label={t("login.username")}
-        name="username"
-        leadingIcon={faPerson}
-        placeholder={t("login.username_placeholder")}
-        type="text"
-        required={true}
-        onChange={(event) => {
-          setCredentials((prev) => ({
-            ...prev,
-            username: event.target.value,
-            errors: { ...prev.errors, usr: "" },
-          }));
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleLogin();
         }}
-        value={credentials.username}
-      />
-      {credentials.errors.usr && (
-        <span className="text-red-500 text-sm -mt-3 mb-2 text-left w-full">
-          {credentials.errors.usr}
-        </span>
-      )}
-      <PasswordInput
-        name="password"
-        label={t("login.password")}
-        placeholder={t("login.password_placeholder")}
-        leadingIcon={faLock}
-        required={true}
-        value={credentials.password}
-        onChange={(event) =>
-          setCredentials((prev) => ({
-            ...prev,
-            password: event.target.value,
-            errors: { ...prev.errors, pas: "" },
-          }))
-        }
-      />
-      {credentials.errors.pas && (
-        <span className="text-red-500 text-sm -mt-3 mb-2 text-left w-full">
-          {credentials.errors.pas}
-        </span>
-      )}
-      <div className="flex gap-2">
-        <p className="font-medium">{t("login.forgot_password")}</p>
-        <a
-          href="#"
-          className="text-orange-500 active:text-orange-500 hover:text-orange-700 underline"
+      >
+        <TextInput
+          label={t("login.username")}
+          name="username"
+          leadingIcon={faPerson}
+          placeholder={t("login.username_placeholder")}
+          type="text"
+          required={true}
+          onChange={(event) => {
+            setCredentials((prev) => ({
+              ...prev,
+              username: event.target.value,
+              errors: { ...prev.errors, usr: "" },
+            }));
+          }}
+          value={credentials.username}
+        />
+        {credentials.errors.usr && (
+          <span className="text-red-500 text-sm -mt-3 mb-2 text-left w-full">
+            {credentials.errors.usr}
+          </span>
+        )}
+        <PasswordInput
+          name="password"
+          label={t("login.password")}
+          placeholder={t("login.password_placeholder")}
+          leadingIcon={faLock}
+          required={true}
+          value={credentials.password}
+          onChange={(event) =>
+            setCredentials((prev) => ({
+              ...prev,
+              password: event.target.value,
+              errors: { ...prev.errors, pas: "" },
+            }))
+          }
+        />
+        {credentials.errors.pas && (
+          <span className="text-red-500 text-sm -mt-3 mb-2 text-left w-full">
+            {credentials.errors.pas}
+          </span>
+        )}
+        <div className="flex gap-2">
+          <p className="font-medium">{t("login.forgot_password")}</p>
+          <a
+            href="#"
+            className="text-orange-500 active:text-orange-500 hover:text-orange-700 underline"
+          >
+            {t("login.reset_password")}
+          </a>
+        </div>
+        <Button
+          additionalStyles="py-2 rounded-xl my-4 text-xl w-full"
+          type="submit"
         >
-          {t("login.reset_password")}
-        </a>
-      </div>
-      <Button
-        additionalStyles="px-16 py-2 rounded-xl my-4 text-xl w-full"
-        onClick={handleLogin}
-      >
-        {t("login.join_button")}
-      </Button>
+          {t("login.join_button")}
+        </Button>
 
-      <Button
-        additionalStyles="rounded-xl px-16 w-full"
-        inverted={true}
-        onClick={() => {
-          navigator("/createRestaurantAccount");
-        }}
-      >
-        {t("login.signup_button")}
-      </Button>
+        <Button
+          additionalStyles="rounded-xl w-full"
+          inverted={true}
+          onClick={() => {
+            navigator("/createRestaurantAccount");
+          }}
+        >
+          {t("login.signup_button")}
+        </Button>
+      </form>
     </div>
   );
 };
 
-export default LoginSignupPage;
+export default LoginPage;
