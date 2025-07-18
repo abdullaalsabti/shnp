@@ -3,6 +3,7 @@
   "logout": "Logout",
   "home": "Home",
   "create-account": "Create Account",
+  "login_nav": "Login",
   "form": {
     "registration": {
       "title": "Fill Out Restaurant Registration Form",
@@ -73,6 +74,23 @@
     "validation": {
       "required": "This field is required",
       "invalid_format": "Invalid format"
+    }
+  },
+  "login": {
+    "title": "Log into Restaurant Panel",
+    "subtitle": "Please enter your restaurant email address to create an account or to log in",
+    "username": "Username",
+    "password": "Password",
+    "username_placeholder": "Username",
+    "password_placeholder": "Password",
+    "language_toggle": "العربية",
+    "forgot_password": "Can't Remember Your Current Password?",
+    "reset_password": "Reset Password",
+    "join_button": "Join Shanap",
+    "signup_button": "Don't have an account? Sign up instead",
+    "validation": {
+      "username_required": "Username is required",
+      "password_required": "Password is required"
     }
   }
 }

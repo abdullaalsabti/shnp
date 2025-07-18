@@ -1,19 +1,10 @@
 import React from "react";
 import { TrophySpin } from "react-loading-indicators";
 
-type LoadingIndicatorProps = {
-  text?: string;
-};
-
-const LoadingIndicator: React.FC<LoadingIndicatorProps> = (props) => {
+const LoadingIndicator: React.FC = () => {
   return (
-    <div className=" absolute top-1/2 left-1/2 z-10 bg-white/60 backdrop-blur-xl flex flex-row justify-center items-center">
-      <TrophySpin
-        color="#ff7c11"
-        size="large"
-        text={props.text ?? ''}
-        textColor="#000000"
-      />
+    <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 backdrop-blur-xl flex flex-row justify-center items-center bg-none">
+      <TrophySpin color="#ff7c11" size="large" textColor="#000000" />
     </div>
   );
 };

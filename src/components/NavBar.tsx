@@ -19,10 +19,10 @@ const NavBar: React.FC = () => {
         </div>
         <ul className="flex gap-4 text-stone-500 font-medium">
           <NavLink
-            to={"/"}
+            to={"/login"}
             className={(isActive) => (isActive ? listItemClassName : "")}
           >
-            {t("home")}
+            {t("login_nav")}
           </NavLink>
           <NavLink
             to={"/createRestaurantAccount"}

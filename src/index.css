@@ -16,15 +16,6 @@
   font-family: "Urbanist", sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   min-width: 320px;
@@ -49,6 +40,10 @@ body {
 .ltr {
   text-align: left;
   direction: ltr;
+}
+
+.trophy-spin {
+  background: transparent !important;
 }
 
 @media (prefers-color-scheme: light) {

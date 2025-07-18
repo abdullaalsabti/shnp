@@ -88,6 +88,7 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
         <button
           type="button"
           className="text-orange-400 border-3 rounded-4xl border-orange-400 py-1 px-2"
+          onClick={props.onClose}
         >
           <FontAwesomeIcon icon={faX} size="1x"></FontAwesomeIcon>
         </button>
