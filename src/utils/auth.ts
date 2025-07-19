@@ -16,3 +16,17 @@ export function checkIsNotAuthLoader() {
     return redirect("/home");
   }
 }
+
+export function getRemainingTokenDuration() {
+  const storedExpirationDate = store.getState().authState.expirationDate;
+
+  if (!storedExpirationDate) {
+    return 0;
+  }
+
+  const expirationDate = new Date(storedExpirationDate);
+  const currentDate = new Date();
+
+  const remainingTime = expirationDate.getTime() - currentDate.getTime();
+  return remainingTime > 0 ? remainingTime : 0;
+}
