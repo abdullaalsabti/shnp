@@ -1,12 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Form } from "react-router-dom";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import { useApplicationSelector } from "../store/storeHooks";
 const NavBar: React.FC = () => {
   const listItemClassName = "hover:text-orange-900 cursor-pointer";
 
   const { t } = useTranslation();
-
+  const authState = useApplicationSelector((state) => state.authState);
+  console.log(authState);
   return (
     <nav className="bg-white  w-full">
       <div className="w-full mx-auto px-4 py-2 flex flex-row items-center justify-between">
@@ -18,18 +20,27 @@ const NavBar: React.FC = () => {
           />
         </div>
         <ul className="flex gap-4 text-stone-500 font-medium">
-          <NavLink
-            to={"/"}
-            className={(isActive) => (isActive ? listItemClassName : "")}
-          >
-            {t("home")}
-          </NavLink>
-          <NavLink
-            to={"/createRestaurantAccount"}
-            className={(isActive) => (isActive ? listItemClassName : "")}
-          >
-            {t("create-account")}
-          </NavLink>
+          {!authState.isAuthenticated && (
+            <NavLink
+              to={"/login"}
+              className={(isActive) => (isActive ? listItemClassName : "")}
+            >
+              {t("login_nav")}
+            </NavLink>
+          )}
+          {!authState.isAuthenticated && (
+            <NavLink
+              to={"/createRestaurantAccount"}
+              className={(isActive) => (isActive ? listItemClassName : "")}
+            >
+              {t("create-account")}
+            </NavLink>
+          )}
+          {authState.isAuthenticated && (
+            <Form action="/logout" method="post">
+              <button className="cursor-pointer">{t("logout")}</button>
+            </Form>
+          )}
 
           <button
             onClick={() => {

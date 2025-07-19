@@ -3,6 +3,7 @@
   "logout": "تسجيل خروج",
   "home": "الصفحة الرئيسية",
   "create-account": "إنشاء حساب",
+  "login_nav": "تسجيل دخول",
   "form": {
     "registration": {
       "title": "املأ نموذج تسجيل المطعم",
@@ -73,6 +74,23 @@
     "validation": {
       "required": "هذا الحقل مطلوب",
       "invalid_format": "تنسيق غير صحيح"
+    }
+  },
+  "login": {
+    "title": "تسجيل الدخول إلى لوحة المطعم",
+    "subtitle": "يرجى إدخال عنوان البريد الإلكتروني للمطعم لإنشاء حساب أو لتسجيل الدخول",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "username_placeholder": "اسم المستخدم",
+    "password_placeholder": "كلمة المرور",
+    "language_toggle": "English",
+    "forgot_password": "لا تتذكر كلمة المرور الحالية؟",
+    "reset_password": "إعادة تعيين كلمة المرور",
+    "join_button": "انضم إلى شناب",
+    "signup_button": "ليس لديك حساب؟ سجل بدلاً من ذلك",
+    "validation": {
+      "username_required": "اسم المستخدم مطلوب",
+      "password_required": "كلمة المرور مطلوبة"
     }
   }
 }

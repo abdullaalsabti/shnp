@@ -14,6 +14,7 @@ import HoursModal from "../Modals/HoursModal";
 import WorkHourCards from "../WorkHourCards";
 import { dayToNumber } from "../../utils/dayToNumber";
 import SelectInput from "../Inputs/SelectInput";
+import getRandomId from "../../utils/getRandomId";
 
 type RegistrationFormProps = {
   formik: FormikProps<FormikFormValues>;
@@ -35,8 +36,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       toHour: parseInt(toHour),
       from: fromHour,
       to: toHour,
-      id: 0, //FIXME: replace id with actual id
-      restaurantId: 0, //FIXME: replace id with actual id
+      id: getRandomId(),
+      restaurantId: 0,
     };
 
     const existingWorkingDetails = [...props.formik.values.workingDetails]; //copy
@@ -52,7 +53,13 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
     setWorkDetailIndex(null);
   }
 
+  console.log(
+    workDetailIndex,
+    props.formik.values.workingDetails[workDetailIndex ?? 0]
+  );
+
   function handleEditHours(index: number) {
+    console.log("editing work detail at index: ", index);
     setWorkDetailIndex(index);
     setModalIsOpen(true);
   }
@@ -74,30 +81,37 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 md:gap-x-10 lg:gap-x-15">
         <TextInput
           name="nameEn"
+          formikName="nameEn"
           label={t("form.registration.restaurant_name_en")}
           placeholder={t("form.placeholders.restaurant_name_en")}
           required
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="nameAr"
+          formikName="nameAr"
           label={t("form.registration.restaurant_name_ar")}
           placeholder={t("form.placeholders.restaurant_name_ar")}
           required
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="email"
+          formikName="email"
           label={t("form.registration.email")}
           placeholder={t("form.placeholders.email")}
           required
           type="email"
           formik={props.formik}
         />
+
         <TextInput
           name="bankAccountIban"
+          formikName="bankAccountIban"
           label={t("form.registration.bank_iban")}
           placeholder={t("form.placeholders.bank_iban")}
           required
@@ -106,20 +120,12 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
         />
         <PasswordInput
           name="password"
+          formikName="password"
           label={t("form.registration.password")}
           required
           placeholder={t("form.placeholders.password")}
           formik={props.formik}
         />
-        {/* 
-        <PasswordInput
-          name="confirmPassword"
-          label="confirmPassword"
-          required
-          placeholder="Enter your password"
-          formik={props.formik}
-        /> */}
-        {/* You can add confirm password to state for UX but it doesn't exist in FormikFormValues */}
         <SelectInput
           formik={props.formik}
           label={t("form.registration.restaurant_type")}
@@ -130,41 +136,29 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
         ></SelectInput>
         <TextInput
           name="registrationNumber"
+          formikName="registrationNumber"
           label={t("form.registration.registration_number")}
           placeholder={t("form.placeholders.registration_number")}
           required
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="operationRepresentativeEmailAddress"
+          formikName="operationRepresentativeEmailAddress"
           label={t("form.registration.rep_email")}
           placeholder={t("form.placeholders.rep_email")}
           required
           type="email"
           formik={props.formik}
         />
+
         <PhoneInput
           name="operationRepresentativePhoneNumber"
           label={t("form.registration.rep_phone")}
           placeholder={t("form.placeholders.rep_phone")}
           required
-          formik={props.formik}
-        />
-        <TextInput
-          name="operationRepresentativeFullNameEn"
-          label={t("form.registration.rep_name_en")}
-          placeholder={t("form.placeholders.rep_name_en")}
-          required
-          type="text"
-          formik={props.formik}
-        />
-        <TextInput
-          name="operationRepresentativeFullNameAr"
-          label={t("form.registration.rep_name_ar")}
-          placeholder={t("form.placeholders.rep_name_ar")}
-          required
-          type="text"
           formik={props.formik}
         />
         <PhoneInput
@@ -176,70 +170,87 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
         />
         <TextInput
           name="mainBranchNameAr"
+          formikName="mainBranchNameAr"
           label={t("form.registration.branch_name_ar")}
           placeholder={t("form.placeholders.branch_name_ar")}
           required
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="mainBranchNameEn"
+          formikName="mainBranchNameEn"
           label={t("form.registration.branch_name_en")}
           placeholder={t("form.placeholders.branch_name_en")}
           required
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="branchDistrict"
+          formikName="branchDistrict"
           label={t("form.registration.branch_district")}
           placeholder={t("form.placeholders.branch_district")}
           required={false}
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="branchAddressName"
+          formikName="branchAddressName"
           label={t("form.registration.branch_address")}
           placeholder={t("form.placeholders.branch_address")}
           required={false}
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="branchStreet"
+          formikName="branchStreet"
           label={t("form.registration.branch_street")}
           placeholder={t("form.placeholders.branch_street")}
           required={false}
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="branchBuildingNumber"
+          formikName="branchBuildingNumber"
           label={t("form.registration.branch_building")}
           placeholder={t("form.placeholders.branch_building")}
           required={false}
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="branchAddressDescription"
+          formikName="branchAddressDescription"
           label={t("form.registration.branch_description")}
           placeholder={t("form.placeholders.branch_description")}
           required={false}
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="twitterSocialMediaLink"
+          formikName="twitterSocialMediaLink"
           label={t("form.registration.twitter")}
           placeholder={t("form.placeholders.twitter")}
           required={false}
           type="text"
           formik={props.formik}
         />
+
         <TextInput
           name="instagramSocialMediaLink"
+          formikName="instagramSocialMediaLink"
           label={t("form.registration.instagram")}
           placeholder={t("form.placeholders.instagram")}
           required={false}
@@ -261,6 +272,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = (props) => {
             required={false}
             link="..."
             onClick={() => {
+              console.log("adding new detail...");
               setModalIsOpen(true);
             }}
             overlay="hours"

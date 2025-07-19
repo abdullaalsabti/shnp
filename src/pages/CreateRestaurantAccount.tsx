@@ -1,15 +1,18 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import RegistrationForm from "../components/Forms/RegistrationForm";
 import RequiredDocumentForm from "../components/Forms/RequiredDocumentForm";
 import { useFormik } from "formik";
 import type { FormikFormValues } from "../utils/formikUtils";
 import { yupValidationSchema, initialValues } from "../utils/formikUtils";
-import LoadingIndicator from "../components/LoadingIndicator";
 import toast from "../../node_modules/react-hot-toast/src/index";
+import { loadingActions } from "../store/loadingSlice";
+import { useApplicationDispatch } from "../store/storeHooks";
 
 const CreateRestaurantAccountPage: React.FC = () => {
+  const dispatch = useApplicationDispatch();
+
   async function handleSubmitForm(values: FormikFormValues) {
+    dispatch(loadingActions.setIsLoading());
     console.log("CREATING ACCOUNT");
     try {
       const response = await fetch(
@@ -43,6 +46,8 @@ const CreateRestaurantAccountPage: React.FC = () => {
       return data;
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch(loadingActions.setIsNotLoading());
     }
   }
 
@@ -59,9 +64,9 @@ const CreateRestaurantAccountPage: React.FC = () => {
       <h1 className="text-3xl font-medium text-left">
         Create A Restaurant Account
       </h1>
-      {isSubmitting && (
+      {/* {isSubmitting && (
         <LoadingIndicator text="Submitting..."></LoadingIndicator>
-      )}
+      )} */}
       <div className={`${isSubmitting ? "blur-sm pointer-events-none" : ""}`}>
         <form onSubmit={formik.handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 divide-x divide-gray-400/40 border border-gray-400/40">
