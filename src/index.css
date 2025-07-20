@@ -64,3 +64,15 @@ ul > a {
 ul > a:hover {
   color: rgb(255, 47, 0);
 }
+
+button {
+  cursor: pointer;
+}
+
+select option:checked {
+  background-image: none;
+}
+
+select option::before {
+  content: none;
+}

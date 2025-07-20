@@ -25,9 +25,13 @@ const NavBar: React.FC<NavBarProps> = ({ onSidebarToggle }) => {
   const profile = useApplicationSelector(
     (state) => state.restaurantProfileState.profile
   );
+  const employeeProfile = useApplicationSelector(
+    (state) => state.restaurantEmployeeProfile.profile
+  );
   const currentRoute = toTitleCase(
     splitAtCapitalLetter(useLocation().pathname.slice(1))
   );
+  console.log(employeeProfile);
 
   useEffect(() => {
     if (authState.token) {
@@ -93,12 +97,20 @@ const NavBar: React.FC<NavBarProps> = ({ onSidebarToggle }) => {
           >
             {i18next.language === "en" ? "العربية" : "English"}
           </button>
-          <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+          <button>
+            <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
+          </button>
           <div className="hidden md:block">
-            {authState.isAuthenticated && profile && (
+            {authState.isAuthenticated && profile && employeeProfile && (
               <ProfileSection
                 imgUrl={profile.imageUrl}
                 name={i18n.language === "en" ? profile.nameEn : profile.nameAr}
+                owner={employeeProfile?.owner}
+                fullName={
+                  i18n.language === "en"
+                    ? employeeProfile.fullNameEn
+                    : employeeProfile.fullNameAr
+                }
               ></ProfileSection>
             )}
           </div>

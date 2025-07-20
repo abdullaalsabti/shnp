@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "createRestaurantAccount",
         element: <CreateRestaurantAccountPage></CreateRestaurantAccountPage>,
-        // loader: checkIsAuthLoader,
+        loader: checkIsNotAuthLoader,
       },
       {
         path: "login",

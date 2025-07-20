@@ -6,11 +6,11 @@ import {
   extraMenuListItems,
   type menuItemType,
 } from "../utils/menuItemsList";
-import MenuItem from "./menuItem";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useApplicationSelector } from "../store/storeHooks";
 import { useTranslation } from "react-i18next";
 import ProfileSection from "./ProfileSection";
+import MenuItem from "./menuItem";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -20,12 +20,17 @@ type SidebarProps = {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
   const authState = useApplicationSelector((state) => state.authState);
   const { t, i18n } = useTranslation();
-
   const profile = useApplicationSelector(
     (state) => state.restaurantProfileState.profile
   );
-  const [activeRoute, setActiveRoute] = useState<string>("/dashboard");
+  const employeeProfile = useApplicationSelector(
+    (state) => state.restaurantEmployeeProfile.profile
+  );
   const navigate = useNavigate();
+  const location = useLocation();
+  const [activeRoute, setActiveRoute] = useState<string>(location.pathname);
+
+  const isRTL = i18n.language === "ar";
 
   function handleItemClick(item: menuItemType) {
     setActiveRoute(item.route);
@@ -35,6 +40,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       onToggle();
     }
   }
+
+  console.log(activeRoute);
 
   return (
     <>
@@ -49,12 +56,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       {/* Sidebar */}
       <aside
         className={`
-        h-full w-80 overflow-y-auto overflow-x-hidden bg-gray-50 rounded-r-4xl
-        fixed md:relative z-20 md:z-auto
-        transform transition-transform duration-300 ease-in-out
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
-        md:translate-x-0
-      `}
+          h-full w-80 overflow-y-auto overflow-x-hidden bg-gray-50 
+          ${isRTL ? "rounded-l-4xl" : "rounded-r-4xl"}
+          fixed md:relative z-20 md:z-auto
+          transform transition-transform duration-300 ease-in-out
+          ${
+            isOpen
+              ? "translate-x-0"
+              : isRTL
+              ? "translate-x-full"
+              : "-translate-x-full"
+          }
+          md:translate-x-0
+          ${isRTL ? "right-0 md:right-auto" : "left-0 md:left-auto"}
+        `}
       >
         <div className="flex flex-col p-4">
           <img
@@ -63,11 +78,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             alt="logo of shanab company"
           />
           <div className="md:hidden mb-8">
-            {authState.isAuthenticated && profile && (
+            {authState.isAuthenticated && profile && employeeProfile && (
               <ProfileSection
                 imgUrl={profile.imageUrl}
                 name={i18n.language === "en" ? profile.nameEn : profile.nameAr}
-              ></ProfileSection>
+                owner={employeeProfile?.owner}
+                fullName={
+                  i18n.language === "en"
+                    ? employeeProfile.fullNameEn
+                    : employeeProfile.fullNameAr
+                }
+              />
             )}
           </div>
           <div>

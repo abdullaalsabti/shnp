@@ -3,6 +3,8 @@ import LoadingSlice from "./loadingSlice";
 import authSlice from "./authSlice";
 import restaurantProfileSlice from "./restaurantProfileSlice";
 import restaurantCountSlice from "./restaurantCountsSlice";
+import restaurantEmployeeTableSlice from "./restaurantEmployeeTableSlice";
+import restaurantEmployeeProfileSlice from "./restaurantEmployeeProfileSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ const store = configureStore({
     authState: authSlice.reducer,
     restaurantProfileState: restaurantProfileSlice.reducer,
     restaurantCounts: restaurantCountSlice.reducer,
+    restaurantEmployeeProfile: restaurantEmployeeProfileSlice.reducer,
+    restaurantEmployeeTable: restaurantEmployeeTableSlice.reducer,
   },
 });
 

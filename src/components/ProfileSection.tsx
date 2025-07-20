@@ -3,9 +3,16 @@ import React from "react";
 type ProfileSectionProps = {
   imgUrl: string;
   name: string;
+  owner: boolean;
+  fullName: string;
 };
 
-const ProfileSection: React.FC<ProfileSectionProps> = ({ imgUrl, name }) => {
+const ProfileSection: React.FC<ProfileSectionProps> = ({
+  imgUrl,
+  name,
+  fullName,
+  owner,
+}) => {
   return (
     <div className="flex flex-row justify-between items-center gap-3">
       <div className="w-12 h-12 rounded-full overflow-hidden">
@@ -17,7 +24,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ imgUrl, name }) => {
       </div>
       <div className="flex flex-col justify-evenly items-center">
         <h3 className="font-bold">{name}</h3>
-        <p className="text-gray-500 text-sm">???????</p>
+        <p className="text-gray-500 text-sm">
+          {fullName} - {owner ? "owner" : "employee"}
+        </p>
       </div>
     </div>
   );
