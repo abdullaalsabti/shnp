@@ -4,7 +4,7 @@ import TextInput from "../components/Inputs/TextInput";
 import { faLock, faPerson } from "@fortawesome/free-solid-svg-icons";
 import PasswordInput from "../components/Inputs/PasswordInput";
 import Button from "../components/Buttons/Button";
-import toast from "../../node_modules/react-hot-toast/src/index";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { loadingActions } from "../store/loadingSlice";
 import { useApplicationDispatch } from "../store/storeHooks";

@@ -1,25 +1,26 @@
 import React from "react";
 import toTitleCase from "../../utils/toTitleCase";
 import type { FormikProps } from "formik";
-import type { FormikFormValues } from "../../utils/formikUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-interface TextInputProps {
+interface TextInputProps<T = any> {
   label: string;
-  formikName?: keyof FormikFormValues;
+  formikName?: keyof T;
   name: string;
   required: boolean;
   placeholder: string;
   type: "text" | "email";
-  formik?: FormikProps<FormikFormValues>;
+  formik?: FormikProps<T>;
   leadingIcon?: IconProp;
   trailingIcon?: IconProp;
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput: React.FC<TextInputProps> = (props) => {
+const TextInput: React.FC<TextInputProps> = <T = any,>(
+  props: TextInputProps<T>
+) => {
   const touched =
     props.formikName && props.formik && props.formik.touched[props.formikName];
   const error =
@@ -42,15 +43,15 @@ const TextInput: React.FC<TextInputProps> = (props) => {
         <input
           type={props.type}
           placeholder={props.placeholder}
-          id={fieldName}
+          id={fieldName as string}
           {...(props.formik && props.formikName
-            ? props.formik.getFieldProps(props.formikName)
+            ? props.formik.getFieldProps(props.formikName as string)
             : {
                 value: props.value,
                 onChange: props.onChange,
               })}
           className="min-w-0 w-full mx-2.5"
-          name={fieldName}
+          name={fieldName as string}
         />
         {props.trailingIcon && (
           <FontAwesomeIcon

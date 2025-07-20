@@ -78,22 +78,16 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
   }
 
   return (
-    <ReusableModal onClose={onClose} modalIsOpen={modalIsOpen}>
-      <div className="flex flex-row justify-between items-center mb-4">
-        <h2 className="text-orange-400 text-2xl font-bold ">
-          {props.workingHoursInstance === null
-            ? "Add New Working Details"
-            : "Edit Working Details"}
-        </h2>
-        <button
-          type="button"
-          className="text-orange-400 border-3 rounded-4xl border-orange-400 py-1 px-2"
-          onClick={props.onClose}
-        >
-          <FontAwesomeIcon icon={faX} size="1x"></FontAwesomeIcon>
-        </button>
-      </div>
-      <div className="h-0.25 bg-stone-400/40 mb-3"></div>
+    <ReusableModal
+      onClose={onClose}
+      onSave={() => handleSaveInputs()}
+      modalIsOpen={modalIsOpen}
+      title={
+        props.workingHoursInstance === null
+          ? "Add New Working Details"
+          : "Edit Working Details"
+      }
+    >
       <div className="font-medium text-xl">
         If your shift starts in the morning and ends after midnight, you need to
         divide it into two shifts: The first shift: Starts at x:xx AM. Ends at
@@ -156,24 +150,6 @@ const HoursModal: React.FC<HoursModalProps> = (props) => {
             {error}
           </p>
         ))}
-      </div>
-      <div className="flex flex-row items-center justify-center mt-8">
-        <Button
-          onClick={props.onClose}
-          inverted={true}
-          type="button"
-          additionalStyles="px-20 py-3 mr-4"
-        >
-          Cancel
-        </Button>
-        <Button
-          onClick={handleSaveInputs}
-          inverted={false}
-          type="button"
-          additionalStyles="px-20 py-3"
-        >
-          Save
-        </Button>
       </div>
     </ReusableModal>
   );

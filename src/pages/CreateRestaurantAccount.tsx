@@ -4,7 +4,7 @@ import RequiredDocumentForm from "../components/Forms/RequiredDocumentForm";
 import { useFormik } from "formik";
 import type { FormikFormValues } from "../utils/formikUtils";
 import { yupValidationSchema, initialValues } from "../utils/formikUtils";
-import toast from "../../node_modules/react-hot-toast/src/index";
+import toast from "react-hot-toast";
 import { loadingActions } from "../store/loadingSlice";
 import { useApplicationDispatch } from "../store/storeHooks";
 

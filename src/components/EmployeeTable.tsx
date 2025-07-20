@@ -1,13 +1,22 @@
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import type { RestaurantEmployee } from "../store/restaurantEmployeeTableSlice";
+import EmployeeDropDown from "./EmployeeDropDown";
+import UpdateEmployeeModal from "./Modals/UpdateEmployeeModal";
 
 interface EmployeeTableProps {
   employees: RestaurantEmployee[];
 }
 
 const EmployeeTable: React.FC<EmployeeTableProps> = ({ employees }) => {
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+
+  function toggleModal() {
+    console.log("modal toggled: ", modalIsOpen);
+    setModalIsOpen(!modalIsOpen);
+  }
+
   const thCss = "px-6 py-3 text-center font-bold text-lg";
   const tdCss = "px-6 py-6 text-center font-bold";
   return (
@@ -42,12 +51,23 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({ employees }) => {
                 {emp.accepted ? "Accepted" : "Pending"}
               </td>
               <td className={tdCss}>
-                <FontAwesomeIcon icon={faEllipsis}></FontAwesomeIcon>
+                <EmployeeDropDown
+                  isPending={!emp.accepted}
+                  onUpdateEmployee={() => {}}
+                  toggleModal={toggleModal}
+                ></EmployeeDropDown>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {modalIsOpen && (
+        <UpdateEmployeeModal
+          modalIsOpen={modalIsOpen}
+          onClose={() => {}}
+          onSave={() => {}}
+        ></UpdateEmployeeModal>
+      )}
     </div>
   );
 };

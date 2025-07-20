@@ -15,7 +15,7 @@ const InformationCard: React.FC<InformationCardProps> = (props) => {
   const { i18n } = useTranslation();
 
   return (
-    <div className="shadow rounded min-w-52, min-h-52 flex flex-col justify-between px-8 py-2 rounded-3xl m-4">
+    <div className="shadow-xl rounded min-w-52, min-h-52 flex flex-col justify-between px-8 py-2 rounded-3xl m-4">
       <div className="flex flex-row justify-between items-center">
         <h3 className="text-xl font-bold">{props.title}</h3>
         <button>
