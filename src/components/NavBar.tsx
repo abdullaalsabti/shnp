@@ -11,9 +11,13 @@ import splitAtCapitalLetter from "../utils/splitAtCapitalLetter";
 import fetchRestaurantEmployeeProfileData from "../utils/fetchRestaurantPofile";
 import ProfileSection from "./ProfileSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faGear } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar: React.FC = () => {
+type NavBarProps = {
+  onSidebarToggle?: () => void;
+};
+
+const NavBar: React.FC<NavBarProps> = ({ onSidebarToggle }) => {
   const listItemClassName = "hover:text-orange-900 cursor-pointer";
   const { t, i18n } = useTranslation();
   const authState = useApplicationSelector((state) => state.authState);
@@ -37,7 +41,15 @@ const NavBar: React.FC = () => {
   return (
     <nav className="bg-white  w-full">
       <div className="w-full mx-auto px-4 py-2 flex flex-row items-center justify-between">
-        <div>
+        <div className="flex flex-row items-center gap-4">
+          {authState.isAuthenticated && onSidebarToggle && (
+            <button
+              onClick={onSidebarToggle}
+              className="block md:hidden p-2 text-gray-600 hover:text-gray-900"
+            >
+              <FontAwesomeIcon icon={faBars} size="lg"></FontAwesomeIcon>
+            </button>
+          )}
           {!authState.isAuthenticated ? (
             <img
               src="/shanabLogo.png"
@@ -82,12 +94,14 @@ const NavBar: React.FC = () => {
             {i18next.language === "en" ? "العربية" : "English"}
           </button>
           <FontAwesomeIcon icon={faGear}></FontAwesomeIcon>
-          {authState.isAuthenticated && profile && (
-            <ProfileSection
-              imgUrl={profile.imageUrl}
-              name={i18n.language === "en" ? profile.nameEn : profile.nameAr}
-            ></ProfileSection>
-          )}
+          <div className="hidden md:block">
+            {authState.isAuthenticated && profile && (
+              <ProfileSection
+                imgUrl={profile.imageUrl}
+                name={i18n.language === "en" ? profile.nameEn : profile.nameAr}
+              ></ProfileSection>
+            )}
+          </div>
         </ul>
       </div>
     </nav>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useSubmit } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { useApplicationSelector } from "../store/storeHooks";
@@ -10,15 +10,18 @@ const RootLayout: React.FC = () => {
     (state) => state.authState
   );
   const submit = useSubmit();
+  const [sidebarIsOpen, setSidebarIsOpen] = useState<boolean>(false);
+
+  function toggleSidebar() {
+    setSidebarIsOpen(!sidebarIsOpen);
+  }
 
   useEffect(() => {
     if (!token || !refreshToken) {
       return;
     }
-
     const remainingTime = getRemainingTokenDuration();
     console.log(remainingTime);
-
     setTimeout(() => {
       submit(null, { action: "/logout", method: "post" });
     }, remainingTime);
@@ -26,14 +29,14 @@ const RootLayout: React.FC = () => {
 
   return (
     <>
-      {(!token || !refreshToken) && <NavBar></NavBar>}
+      {(!token || !refreshToken) && <NavBar />}
       {token && refreshToken ? (
         <div className="flex h-screen overflow-hidden">
-          <Sidebar isOpen={true} onToggle={() => {}}></Sidebar>
+          <Sidebar isOpen={sidebarIsOpen} onToggle={toggleSidebar} />
           <main className="flex-1 overflow-y-auto">
             <div className="p-2 flex flex-col">
-              <NavBar></NavBar>
-              <Outlet></Outlet>
+              <NavBar onSidebarToggle={toggleSidebar} />
+              <Outlet />
             </div>
           </main>
         </div>
