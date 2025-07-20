@@ -13,7 +13,7 @@ export function checkIsNotAuthLoader() {
   const authState = store.getState().authState;
   console.log(authState);
   if (authState.token && authState.refreshToken) {
-    return redirect("/home");
+    return redirect("/dashboard");
   }
 }
 

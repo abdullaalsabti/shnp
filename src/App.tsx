@@ -10,6 +10,17 @@ import LoadingIndicator from "./components/LoadingIndicator";
 import { useApplicationSelector } from "./store/storeHooks";
 import { logoutAction } from "./pages/Logout";
 import checkIsAuthLoader, { checkIsNotAuthLoader } from "./utils/auth";
+import Dashboard from "./pages/Dashboard";
+import ManageEmployees from "./pages/ManageEmployees";
+import Menu from "./pages/Menu";
+import Branches from "./pages/Branches";
+import Orders from "./pages/Orders";
+import OrderHistory from "./pages/OrderHistory";
+import OpeningTimes from "./pages/OpeningTimes";
+import Packages from "./pages/Packages";
+import CustomerSubscriptions from "./pages/CustomerSubscriptions";
+import CancelSubscriptions from "./pages/CancelSubscriptions";
+import Settings from "./pages/Settings";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +30,7 @@ const router = createBrowserRouter([
       {
         path: "createRestaurantAccount",
         element: <CreateRestaurantAccountPage></CreateRestaurantAccountPage>,
+        // loader: checkIsAuthLoader,
       },
       {
         path: "login",
@@ -26,8 +38,58 @@ const router = createBrowserRouter([
         loader: checkIsNotAuthLoader,
       },
       {
-        path: "home",
-        element: <HomePage></HomePage>,
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "manageEmployees",
+        element: <ManageEmployees></ManageEmployees>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "menu",
+        element: <Menu></Menu>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "branches",
+        element: <Branches></Branches>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "orders",
+        element: <Orders></Orders>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "orderHistory",
+        element: <OrderHistory></OrderHistory>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "openingTimes",
+        element: <OpeningTimes></OpeningTimes>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "packages",
+        element: <Packages></Packages>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "customerSubscriptions",
+        element: <CustomerSubscriptions></CustomerSubscriptions>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "cancelSubscriptions",
+        element: <CancelSubscriptions></CancelSubscriptions>,
+        loader: checkIsAuthLoader,
+      },
+      {
+        path: "settings",
+        element: <Settings></Settings>,
         loader: checkIsAuthLoader,
       },
       {

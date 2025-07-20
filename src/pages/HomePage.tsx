@@ -1,7 +1,14 @@
 import React from "react";
+import MenuItem from "../components/menuItem";
+import { faDashboard } from "@fortawesome/free-solid-svg-icons";
+import Sidebar from "../components/Sidebar";
 
 const HomePage: React.FC = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+     
+    </>
+  );
 };
 
 export default HomePage;

@@ -11,7 +11,7 @@ import { useApplicationDispatch } from "../store/storeHooks";
 import { authSliceActions } from "../store/authSlice";
 
 const LoginPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigator = useNavigate();
   const dispatch = useApplicationDispatch();
   const [credentials, setCredentials] = useState<{
@@ -50,7 +50,7 @@ const LoginPage = () => {
 
       try {
         const response = await fetch(
-          "https://app-stg.shnp.me/api/restaurantemployees/login?locale=en",
+          `https://app-stg.shnp.me/api/restaurantemployees/login?locale=${i18n.language}`,
           {
             method: "POST",
             headers: {
@@ -90,7 +90,7 @@ const LoginPage = () => {
         // localStorage.setItem("jwt", jwt);
         // localStorage.setItem("refreshToken", refreshToken);
 
-        navigator("/Home");
+        navigator("/dashboard");
       } catch (err) {
         console.log(err);
       }
